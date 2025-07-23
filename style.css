@@ -156,6 +156,9 @@ picture img {
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.5);
     z-index: 900;
+    transition: opacity 0.3s ease;
+
+
   }
 
   .close-menu {
@@ -251,9 +254,15 @@ picture img {
   border-top: 5px solid #000; /* arrow color */
   transition: transform 0.3s ease;
 }
+.nav-link.link-open .arrow {
+  transform: rotate(180deg);
+}
 
 /* Rotate the arrow when dropdown is open */
 .dropdown-list.show ~ .arrow,
 .nav-link.active .arrow {
   transform: rotate(180deg); /* flip the arrow up */
+}
+.hero-image source {
+  display: block;
 }

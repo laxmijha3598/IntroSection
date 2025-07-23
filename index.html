@@ -13,7 +13,8 @@
     <nav class="navbar">
       <ul class="nav-list">
         <li class="nav-item dropdown">
-          <button class="nav-link" aria-haspopup="true">Features <span class="arrow"></span></button>
+<!-- Dropdown button -->
+<button class="nav-link" aria-haspopup="true">Features <span class="arrow"></span></button>
           <ul class="dropdown-list">
             <li class="dropdown-link"><a href="#" aria-label="todo-list"><img src="./assets/images/icon-todo.svg" alt=""> Todo List</a></li>
             <li class="dropdown-link"><a href="#"><img src="./assets/images/icon-calendar.svg" alt=""> Calendar</a></li>
@@ -22,7 +23,8 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <button class="nav-link">Company <span class="arrow"></span></button>
+<!-- Dropdown button -->
+<button class="nav-link" aria-haspopup="true">Company <span class="arrow"></span></button>
           <ul class="dropdown-list">
             <li class="dropdown-link"><a href="#">History</a></li>
             <li class="dropdown-link"><a href="#">Our Team</a></li>
@@ -81,33 +83,42 @@
   const closeMenu = document.querySelector('.close-menu');
 
   navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent outside click handler
-      const dropdown = link.nextElementSibling;
+  link.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const dropdown = link.nextElementSibling;
 
-      // Close all other dropdowns
-      document.querySelectorAll('.dropdown-list').forEach(dl => {
-        if (dl !== dropdown) {
-          dl.classList.remove('show');
-        }
-      });
-
-      // Toggle clicked dropdown
-      dropdown.classList.toggle('show');
+    // Close others
+    document.querySelectorAll('.dropdown-list').forEach(dl => {
+      if (dl !== dropdown) dl.classList.remove('show');
     });
-  });
 
-  openMenu.addEventListener('click', () => {
-    document.querySelector('.navbar').classList.add('open');
-    overlay.style.display = 'block';
-    closeMenu.style.display = 'block';
-  });
+    document.querySelectorAll('.nav-link').forEach(btn => {
+      if (btn !== link) btn.classList.remove('link-open');
+    });
 
-  closeMenu.addEventListener('click', () => {
-    document.querySelector('.navbar').classList.remove('open');
+    // Toggle current
+    dropdown.classList.toggle('show');
+    link.classList.toggle('link-open');
+  });
+});
+
+
+ openMenu.addEventListener('click', () => {
+  document.querySelector('.navbar').classList.add('open');
+  overlay.style.display = 'block';
+  overlay.style.opacity = '1';
+  closeMenu.style.display = 'block';
+});
+
+closeMenu.addEventListener('click', () => {
+  document.querySelector('.navbar').classList.remove('open');
+  overlay.style.opacity = '0';
+  setTimeout(() => {
     overlay.style.display = 'none';
     closeMenu.style.display = 'none';
-  });
+  }, 300);
+});
+
 
   // Close dropdowns when clicking outside
   document.addEventListener('click', (e) => {
