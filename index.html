@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intro Section</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="header">
+    <img src="./assets/images/logo (1).svg" alt="snap's logo" class="logo" />
+
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li class="nav-item dropdown">
+          <button class="nav-link" aria-haspopup="true">Features <span class="arrow"></span></button>
+          <ul class="dropdown-list">
+            <li class="dropdown-link"><a href="#" aria-label="todo-list"><img src="./assets/images/icon-todo.svg" alt=""> Todo List</a></li>
+            <li class="dropdown-link"><a href="#"><img src="./assets/images/icon-calendar.svg" alt=""> Calendar</a></li>
+            <li class="dropdown-link"><a href="#"><img src="./assets/images/icon-reminders.svg" alt=""> Reminders</a></li>
+            <li class="dropdown-link"><a href="#"><img src="./assets/images/icon-planning.svg" alt=""> Planning</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <button class="nav-link">Company <span class="arrow"></span></button>
+          <ul class="dropdown-list">
+            <li class="dropdown-link"><a href="#">History</a></li>
+            <li class="dropdown-link"><a href="#">Our Team</a></li>
+            <li class="dropdown-link"><a href="#">Blog</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#" class="nav-link">Careers</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="registration">
+      <button class="login">Login</button>
+      <button class="register">Register</button>
+    </div>
+
+    <button class="open-menu" aria-label="open menu">☰</button>
+  </header>
+
+ <main class="intro-section">
+  <section class="text-content">
+    <h1>Make remote work</h1>
+    <p>
+      Get your team in sync, no matter your location. Streamline processes,
+      create team rituals, and watch productivity soar.
+    </p>
+    <button class="learn-more">Learn More</button>
+
+    <section class="clients">
+      <img src="./assets/images/client-databiz.svg" alt="databiz" />
+      <img src="./assets/images/client-audiophile.svg" alt="audiophile" />
+      <img src="./assets/images/client-meet.svg" alt="meet" />
+      <img src="./assets/images/client-maker.svg" alt="maker" />
+    </section>
+  </section>
+
+  <picture class="hero-image">
+    <source media="(min-width: 768px)" srcset="./assets/images/image-hero-desktop.png" />
+    <img src="./assets/images/image-hero-mobile.png" alt="hero image" />
+  </picture>
+</main>
+
+
+  <footer class="attribution">
+    Challenge by  <a href="https://www.crio.do" target="_blank">Crio.Do</a>. Coded by
+      <a href="https://www.github.com/laxmijha3598" target="_blank">Laxmi Jha</a>.
+  </footer>
+
+  <div class="overlay"></div>
+  <button class="close-menu" aria-label="close menu">✕</button>
+
+ <script>
+  const navLinks = document.querySelectorAll('.dropdown > .nav-link');
+  const overlay = document.querySelector('.overlay');
+  const openMenu = document.querySelector('.open-menu');
+  const closeMenu = document.querySelector('.close-menu');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent outside click handler
+      const dropdown = link.nextElementSibling;
+
+      // Close all other dropdowns
+      document.querySelectorAll('.dropdown-list').forEach(dl => {
+        if (dl !== dropdown) {
+          dl.classList.remove('show');
+        }
+      });
+
+      // Toggle clicked dropdown
+      dropdown.classList.toggle('show');
+    });
+  });
+
+  openMenu.addEventListener('click', () => {
+    document.querySelector('.navbar').classList.add('open');
+    overlay.style.display = 'block';
+    closeMenu.style.display = 'block';
+  });
+
+  closeMenu.addEventListener('click', () => {
+    document.querySelector('.navbar').classList.remove('open');
+    overlay.style.display = 'none';
+    closeMenu.style.display = 'none';
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-list').forEach(dl => {
+        dl.classList.remove('show');
+      });
+    }
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #000;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo {
+  height: 30px;
+}
+
+.navbar {
+  display: flex;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  min-width: 150px;
+}
+
+.dropdown-list.show {
+  display: block;
+}
+
+.dropdown-link {
+  padding: 0.25rem 0;
+}
+
+.dropdown-link img {
+  width: 14px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.registration button {
+  background: none;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+picture img {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
+}
+
+.text-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.text-content h1 {
+  font-size: 2.5rem;
+}
+
+.text-content p {
+  color: #555;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.learn-more {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.clients {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.clients img {
+  height: 30px;
+}
+
+.attribution {
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 2rem;
+}
+
+.overlay, .close-menu {
+  display: none;
+}
+
+/* KEEP: everything in your desktop CSS as-is, just fixing mobile part below */
+
+@media (max-width: 768px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    background: white;
+    flex-direction: column;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+
+  .navbar.open {
+    right: 0;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 900;
+  }
+
+  .close-menu {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    border: none;
+    background: none;
+    z-index: 1001;
+  }
+
+  .open-menu {
+    display: block;
+    font-size: 2rem;
+    background: none;
+    border: none;
+  }
+
+  .nav-list {
+    flex-direction: column; /* 👈 Show vertical layout in mobile menu */
+    gap: 1rem;
+  }
+
+  .dropdown-list {
+    position: relative; /* 👈 Allow it to show under button */
+    box-shadow: none;
+    margin-left: 1rem;
+  }
+
+  .registration {
+    display: none;
+  }
+
+   .intro-section {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .text-content {
+    text-align: center;
+  }
+
+  .clients {
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+.intro-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 2rem;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.text-content {
+  flex: 1;
+  text-align: left;
+}
+
+.hero-image {
+  flex: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.nav-link {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #000;
+}
+
+.arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000; /* arrow color */
+  transition: transform 0.3s ease;
+}
+
+/* Rotate the arrow when dropdown is open */
+.dropdown-list.show ~ .arrow,
+.nav-link.active .arrow {
+  transform: rotate(180deg); /* flip the arrow up */
+}
